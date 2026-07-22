@@ -11,6 +11,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/debug-proto', fn () => [
+    'x_forwarded_proto' => request()->header('X-Forwarded-Proto'),
+    'secure' => request()->secure(),
+    'scheme' => request()->getScheme(),
+    'headers' => request()->header(),
+    'trusted_proxies' => config('cachet.trusted_proxies'),
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
